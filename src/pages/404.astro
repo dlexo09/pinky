@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import { waLink } from '../config';
+---
+<Base title="Página no encontrada | Pinky Prints">
+  <main style="min-height:100vh;display:grid;place-items:center;text-align:center;padding:2rem">
+    <div>
+      <p class="script" style="font-size:4rem;color:var(--pink-d)">Ups…</p>
+      <h1 style="margin:.5rem 0 1rem">No encontramos esa página</h1>
+      <p style="margin-bottom:1.5rem">Pero seguro encontramos lo que quieres personalizar.</p>
+      <a class="btn" href="/">Volver al inicio</a>
+      <a class="btn ghost" href={waLink('¡Hola Pinky Prints!')} style="margin-left:.5rem">WhatsApp</a>
+    </div>
+  </main>
+</Base>

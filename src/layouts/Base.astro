@@ -1,0 +1,79 @@
+---
+import { SITE, FAQ } from '../config';
+interface Props { title?: string; description?: string }
+const { title = `${SITE.name} | Sublimación y DTF personalizados en CDMX`, description = SITE.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL('/images/logo.jpg', SITE.url).href;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE.url}/#business`,
+    name: SITE.name,
+    founder: { '@type': 'Person', name: SITE.owner },
+    description: SITE.description,
+    url: SITE.url,
+    image: ogImage,
+    logo: ogImage,
+    telephone: `+${SITE.whatsapp}`,
+    areaServed: 'MX',
+    address: { '@type': 'PostalAddress', addressLocality: SITE.city, addressRegion: SITE.region, addressCountry: 'MX' },
+    sameAs: [SITE.instagram, SITE.facebook],
+    makesOffer: ['Sublimación', 'Impresión DTF', 'Tazas personalizadas', 'Playeras personalizadas'].map((n) => ({
+      '@type': 'Offer', itemOffered: { '@type': 'Service', name: n },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/images/logo.jpg" />
+    <meta name="theme-color" content="#fde7ee" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {SITE.ga4Id && (<><script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script><script is:inline define:vars={{ id: SITE.ga4Id }}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id);</script></>)}
+    {SITE.metaPixelId && (<script is:inline define:vars={{ id: SITE.metaPixelId }}>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',id);fbq('track','PageView');</script>)}
+  </head>
+  <body>
+    <script is:inline>document.documentElement.classList.add("js")</script><slot /></body>
+</html>
+
+<style is:global>
+  :root { --pink:#f3a6bd; --pink-d:#d9638a; --blush:#fde7ee; --rose:#b76e79; --ink:#161014; --white:#fff; }
+  *{box-sizing:border-box;margin:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:#fff8fa;line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3{line-height:1.15}
+  .script{font-family:'Great Vibes',cursive;font-weight:400}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+  section{padding:4.5rem 0}
+  .btn{display:inline-block;background:var(--pink-d);color:#fff;padding:.9rem 1.6rem;border-radius:999px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:600;box-shadow:0 6px 18px #d9638a55;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--pink-d);border:2px solid var(--pink-d);box-shadow:none}
+  .eyebrow{letter-spacing:.3em;text-transform:uppercase;font-size:.75rem;color:var(--rose);font-weight:600}
+  .center{text-align:center}
+  h2{font-size:clamp(1.8rem,4vw,2.5rem);margin:.4rem 0 2rem}
+</style>

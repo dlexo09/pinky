@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Crawlers de IA permitidos (GEO)
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://pinkyprints.example.com/sitemap-index.xml

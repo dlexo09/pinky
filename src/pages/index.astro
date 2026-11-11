@@ -1,0 +1,357 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import grupo from '../assets/gallery/termos-grupo.png';
+import felipe from '../assets/gallery/termo-felipe.png';
+import ana from '../assets/gallery/termo-ana.png';
+import less from '../assets/gallery/termo-less.png';
+import calaveras from '../assets/gallery/tazas-calavera.png';
+import tote from '../assets/gallery/tote-onekey.png';
+import totes from '../assets/gallery/totes-pila.png';
+import playera from '../assets/gallery/playera-onekey.png';
+import plancha from '../assets/gallery/taller-plancha.png';
+const works = [
+  [felipe, 'Termo personalizado con nombre Felipe, rayas verdes'],
+  [ana, 'Termo personalizado con nombre Ana, letras estilo gingham'],
+  [less, 'Termo personalizado con nombre Less, rayas beige'],
+  [calaveras, 'Tazas sublimadas con calavera de Día de Muertos'],
+];
+import { SITE, FAQ, PRODUCTS, waLink } from '../config';
+const hello = waLink('¡Hola Pinky Prints! Quiero cotizar un pedido personalizado 💕');
+const steps = [
+  ['1', 'Cuéntanos tu idea', 'Por WhatsApp o con el formulario: producto, diseño y cantidad.'],
+  ['2', 'Te mandamos el diseño', 'Recibes una vista previa y la cotización sin compromiso.'],
+  ['3', 'Producimos', 'Sublimamos o imprimimos en DTF con calidad profesional.'],
+  ['4', 'Recibe tu pedido', 'Lo recoges o te lo enviamos a todo México.'],
+];
+---
+<Base>
+  <header class="top">
+    <div class="wrap bar">
+      <a href="#inicio" class="brand script">Pinky Prints</a>
+      <nav>
+        <a href="#productos">Productos</a><a href="#trabajos">Trabajos</a><a href="#proceso">Cómo pedir</a><a href="#faq">Dudas</a>
+        <a class="btn small" href={hello} data-wa>Cotizar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="wrap grid2">
+        <div>
+          <p class="eyebrow">Sublimación ♥ DTF</p>
+          <h1>Personaliza lo que <span class="script big">más quieres</span></h1>
+          <p class="lead">Tazas, termos, playeras y más con tu diseño, tu nombre o tu marca. Hecho con cariño por {SITE.owner} en {SITE.city}.</p>
+          <p class="cta"><a class="btn" href={hello} data-wa>Cotizar por WhatsApp</a> <a class="btn ghost" href="#productos">Ver productos</a></p>
+          <ul class="trust"><li>✔ Colores vivos que no se despintan</li><li>✔ Diseño incluido</li><li>✔ Mayoreo y eventos</li></ul>
+        </div>
+        <img src="/images/logo.jpg" alt="Logo de Pinky Prints by Vania Zeret, sublimación y DTF" width="480" height="480" class="logo" fetchpriority="high" />
+      </div>
+    </section>
+
+    <section id="productos">
+      <div class="wrap center">
+        <p class="eyebrow">Lo que hacemos</p>
+        <h2>Productos <span class="script big">personalizados</span></h2>
+        <div class="cards">
+          {PRODUCTS.map((p) => (
+            <article class="card">
+              <div class="ico">{p.icon}</div>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+              <span class="tag">{p.tag}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" id="trabajos">
+      <div class="wrap center">
+        <p class="eyebrow">Hecho en Pinky Prints</p>
+        <h2>Nuestros <span class="script big">trabajos</span></h2>
+        <div class="showcase"><figure class="photo big"><Image src={grupo} alt="Cuatro termos sublimados con nombres Felipe, Isa, Less y Ana" widths={[480, 800, 1080]} sizes="(max-width: 760px) 100vw, 520px" /></figure>
+        <div class="gallery">
+          {works.map(([img, alt]) => (<figure class="photo sq"><Image src={img} alt={alt} widths={[320, 480, 640]} sizes="(max-width: 760px) 50vw, 25vw" loading="lazy" /></figure>))}
+        </div></div>
+        <p class="cta" style="justify-content:center"><a class="btn" href={hello} data-wa>Quiero el mío 💕</a></p>
+      </div>
+    </section>
+
+    <section id="empresas">
+      <div class="wrap grid2">
+        <div>
+          <p class="eyebrow">Para empresas y eventos</p>
+          <h2>Pedidos <span class="script big">corporativos</span></h2>
+          <p>Totebags, playeras y artículos con el logo de tu empresa, listos para congresos, regalos a clientes o uniformes. Producción por lote con color uniforme y entrega puntual.</p>
+          <p style="margin-top:.8rem">Ejemplo real: lote de totebags para <b>OneKey</b>.</p>
+          <p class="cta"><a class="btn" href={hello} data-wa>Cotizar mayoreo</a></p>
+        </div>
+        <div class="stack">
+          <figure class="photo tall"><Image src={tote} alt="Totebag de algodón personalizada con logo de OneKey" widths={[400, 640]} sizes="(max-width: 760px) 45vw, 240px" loading="lazy" /></figure>
+          <figure class="photo"><Image src={playera} alt="Playera azul personalizada con logo blanco de OneKey" widths={[400, 640]} sizes="(max-width: 760px) 45vw, 240px" loading="lazy" /></figure>
+          <figure class="photo"><Image src={totes} alt="Lote de totebags personalizadas para OneKey" widths={[400, 640]} sizes="(max-width: 760px) 45vw, 240px" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" id="taller">
+      <div class="wrap grid2">
+        <figure class="photo tall"><Image src={plancha} alt="Plancha de transferencia en el taller de Pinky Prints junto a totebags terminadas" widths={[400, 640, 900]} sizes="(max-width: 760px) 90vw, 480px" loading="lazy" /></figure>
+        <div>
+          <p class="eyebrow">Detrás de cada pedido</p>
+          <h2>Hecho <span class="script big">a mano</span></h2>
+          <p>Cada pieza se prensa y se revisa una por una. Atención directa con Vania Zeret, sin intermediarios.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tecnicas">
+      <div class="wrap grid2">
+        <div>
+          <h2><span class="script big">Sublimación</span></h2>
+          <p>Ideal para tazas, termos, mousepads y playeras de poliéster. La tinta se integra al material: acabado liso, brillante y duradero.</p>
+        </div>
+        <div>
+          <h2><span class="script big">DTF</span></h2>
+          <p>Para algodón, mezclas, gorras y telas oscuras. Impresión de alta definición, flexible y resistente a lavadas. También vendemos transfers listos para planchar.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="wrap center">
+        <p class="eyebrow">Fácil y rápido</p>
+        <h2>Cómo hacer tu pedido</h2>
+        <ol class="steps">
+          {steps.map(([n, t, d]) => (<li><b>{n}</b><h3>{t}</h3><p>{d}</p></li>))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="alt" id="cotizar">
+      <div class="wrap narrow center">
+        <p class="eyebrow">Sin compromiso</p>
+        <h2>Pide tu <span class="script big">cotización</span></h2>
+        <form id="quote" class="form">
+          <input name="nombre" placeholder="Tu nombre" required autocomplete="name" />
+          <select name="producto" required>
+            <option value="">¿Qué quieres personalizar?</option>
+            {PRODUCTS.map((p) => <option>{p.title}</option>)}
+          </select>
+          <input name="cantidad" type="number" min="1" placeholder="Cantidad aproximada" />
+          <textarea name="idea" rows="3" placeholder="Cuéntanos tu idea (colores, texto, fecha en que lo necesitas…)"></textarea>
+          <input name="web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+          <button class="btn" type="submit">Enviar por WhatsApp 💕</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap narrow">
+        <h2 class="center">Preguntas frecuentes</h2>
+        {FAQ.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <img src="/images/logo.jpg" alt="" width="84" height="84" loading="lazy" />
+        <p class="script big">Pinky Prints</p>
+        <p class="muted">Sublimación ♥ DTF<br />Personalizados hechos con cariño por {SITE.owner}.</p>
+      </div>
+      <nav class="foot-col" aria-label="Secciones" style="align-items:flex-start">
+        <h3>Explora</h3>
+        <a href="#productos">Productos</a>
+        <a href="#trabajos">Nuestros trabajos</a>
+        <a href="#empresas">Pedidos corporativos</a>
+        <a href="#proceso">Cómo pedir</a>
+        <a href="#faq">Preguntas frecuentes</a>
+      </nav>
+      <div class="foot-col">
+        <h3>Contacto</h3>
+        <a href={hello} data-wa class="ico-link">
+          <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16.003 3C8.83 3 3 8.83 3 16c0 2.292.6 4.53 1.737 6.5L3 29l6.68-1.703A12.94 12.94 0 0 0 16.003 29C23.17 29 29 23.17 29 16S23.17 3 16.003 3zm0 23.7a10.7 10.7 0 0 1-5.46-1.497l-.392-.233-3.965 1.011 1.058-3.866-.255-.4A10.67 10.67 0 0 1 5.3 16c0-5.9 4.8-10.7 10.703-10.7S26.7 10.1 26.7 16s-4.8 10.7-10.697 10.7zm5.87-8.013c-.322-.161-1.904-.94-2.2-1.047-.295-.107-.51-.161-.725.161-.215.322-.832 1.047-1.02 1.262-.188.215-.376.242-.698.081-.322-.161-1.36-.5-2.59-1.597-.957-.854-1.603-1.907-1.79-2.229-.188-.322-.02-.496.141-.656.145-.144.322-.376.483-.564.161-.188.215-.322.322-.537.107-.215.054-.403-.027-.564-.08-.161-.725-1.747-.993-2.392-.262-.627-.528-.542-.725-.552l-.617-.01c-.215 0-.564.08-.859.403-.295.322-1.128 1.101-1.128 2.686s1.155 3.115 1.316 3.33c.161.215 2.273 3.47 5.505 4.866.77.332 1.37.53 1.837.679.772.245 1.475.21 2.03.127.62-.092 1.904-.778 2.173-1.529.268-.752.268-1.396.188-1.53-.08-.134-.295-.215-.617-.376z"/></svg>
+          {SITE.whatsappDisplay}
+        </a>
+        <a href={SITE.instagram} rel="noopener" class="ico-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a href={SITE.facebook} rel="noopener" class="ico-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.5-3.3h-3.3V8.4c0-.95.4-1.7 1.8-1.7H17V3.8c-.3 0-1.3-.2-2.5-.2-2.6 0-4.3 1.6-4.3 4.4v2.5H7.4v3.3h2.8V22h3.3z"/></svg>
+          Facebook
+        </a>
+        <p class="muted loc">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          {SITE.city}, {SITE.region} · Envíos a todo México
+        </p>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      <span>© {new Date().getFullYear()} {SITE.name} by {SITE.owner}</span>
+      <span class="credit">
+        Sitio desarrollado con
+        <svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="currentColor" role="img" aria-label="amor"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.3 5c1.9 0 3.5 1 4.5 2.6h.4C12.2 6 13.8 5 15.7 5 19 5 21.1 8.4 21.6 11.8 19.5 16.4 12 21 12 21z"/></svg>
+        por <a href="https://www.webartisan.com.mx/" target="_blank" rel="noopener">WebArtisan</a>
+      </span>
+    </div>
+  </footer>
+
+  <a class="fab" href={hello} data-wa aria-label="Escribir por WhatsApp"><svg viewBox="0 0 32 32" width="30" height="30" fill="#fff" aria-hidden="true"><path d="M16.003 3C8.83 3 3 8.83 3 16c0 2.292.6 4.53 1.737 6.5L3 29l6.68-1.703A12.94 12.94 0 0 0 16.003 29C23.17 29 29 23.17 29 16S23.17 3 16.003 3zm0 23.7a10.7 10.7 0 0 1-5.46-1.497l-.392-.233-3.965 1.011 1.058-3.866-.255-.4A10.67 10.67 0 0 1 5.3 16c0-5.9 4.8-10.7 10.703-10.7S26.7 10.1 26.7 16s-4.8 10.7-10.697 10.7zm5.87-8.013c-.322-.161-1.904-.94-2.2-1.047-.295-.107-.51-.161-.725.161-.215.322-.832 1.047-1.02 1.262-.188.215-.376.242-.698.081-.322-.161-1.36-.5-2.59-1.597-.957-.854-1.603-1.907-1.79-2.229-.188-.322-.02-.496.141-.656.145-.144.322-.376.483-.564.161-.188.215-.322.322-.537.107-.215.054-.403-.027-.564-.08-.161-.725-1.747-.993-2.392-.262-.627-.528-.542-.725-.552l-.617-.01c-.215 0-.564.08-.859.403-.295.322-1.128 1.101-1.128 2.686s1.155 3.115 1.316 3.33c.161.215 2.273 3.47 5.505 4.866.77.332 1.37.53 1.837.679.772.245 1.475.21 2.03.127.62-.092 1.904-.778 2.173-1.529.268-.752.268-1.396.188-1.53-.08-.134-.295-.215-.617-.376z"/></svg></a>
+
+  <script define:vars={{ number: SITE.whatsapp, endpoint: SITE.leadsEndpoint }}>
+    // --- Origen del lead (UTM) guardado en la sesión ---
+    var q = new URLSearchParams(location.search), keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'], utm = {}, refHost = 'directo';
+    try {
+      keys.forEach(function (k) { if (q.get(k)) sessionStorage.setItem(k, q.get(k)); });
+      keys.forEach(function (k) { utm[k] = sessionStorage.getItem(k) || ''; });
+      if (!sessionStorage.getItem('ref')) sessionStorage.setItem('ref', document.referrer ? new URL(document.referrer).hostname : 'directo');
+      refHost = sessionStorage.getItem('ref') || 'directo';
+    } catch (e) {}
+    var ref = utm.utm_source ? utm.utm_source + (utm.utm_campaign ? '-' + utm.utm_campaign : '') : refHost;
+
+    // Código de origen en cada enlace de WhatsApp: "(ref: ig-promo)"
+    document.querySelectorAll('[data-wa]').forEach(function (a) {
+      try { var u = new URL(a.href); u.searchParams.set('text', (u.searchParams.get('text') || '') + ' (ref: ' + ref + ')'); a.href = u.toString(); } catch (e) {}
+    });
+
+    // --- Envío al Google Sheet (sin esperar respuesta) ---
+    function sendLead(data) {
+      if (!endpoint) return;
+      try {
+        fetch(endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(Object.assign({ ref: ref, pagina: location.pathname }, utm, data)) });
+      } catch (e) {}
+    }
+    var track = function (n) { try { window.fbq && fbq('track', 'Lead'); window.gtag && gtag('event', n); } catch (e) {} };
+
+    document.querySelectorAll('[data-wa]').forEach(function (a) {
+      a.addEventListener('click', function () { track('whatsapp_click'); sendLead({ tipo: 'clic_whatsapp' }); });
+    });
+
+    // Transiciones al hacer scroll
+    (function () {
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var els = document.querySelectorAll('section .wrap > *, .card, .steps li, details, .gallery .photo, .stack .photo');
+      els.forEach(function (el) {
+        el.classList.add('reveal');
+        var sib = Array.prototype.indexOf.call(el.parentNode.children, el);
+        el.style.setProperty('--d', Math.min(sib, 6) * 0.08 + 's');
+      });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { reduce ? el.classList.add('in') : io.observe(el); });
+      var top = document.querySelector('.top');
+      addEventListener('scroll', function () { top.classList.toggle('scrolled', scrollY > 10); }, { passive: true });
+    })();
+
+    document.getElementById('quote').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = Object.fromEntries(new FormData(e.target));
+      if (d.web) return; // honeypot anti-spam
+      var msg = '¡Hola Pinky Prints! Soy ' + d.nombre + '. Quiero cotizar: ' + d.producto +
+        (d.cantidad ? ', cantidad ' + d.cantidad : '') + (d.idea ? '. Idea: ' + d.idea : '') + ' (ref: ' + ref + ')';
+      track('quote_submit');
+      sendLead({ tipo: 'formulario', nombre: d.nombre, producto: d.producto, cantidad: d.cantidad, idea: d.idea });
+      window.open('https://wa.me/' + number + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    });
+  </script>
+
+</Base>
+
+<style>
+  .top{position:sticky;top:0;z-index:10;background:#fff8facc;backdrop-filter:blur(8px);border-bottom:1px solid #f3a6bd55}
+  .bar{display:flex;justify-content:space-between;align-items:center;padding-top:.6rem;padding-bottom:.6rem}
+  .brand{font-size:2rem;text-decoration:none;color:var(--ink)}
+  nav{display:flex;gap:1.2rem;align-items:center;font-size:.9rem;font-weight:500}
+  nav a{text-decoration:none}
+  .btn.small{padding:.5rem 1.1rem;color:#fff}
+  .hero{background:radial-gradient(circle at 80% 20%,var(--blush),transparent 60%);padding-top:3rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+  h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:.5rem 0 1rem}
+  .big{font-size:1.25em;color:var(--pink-d)}
+  .lead{font-size:1.1rem;max-width:34ch}
+  .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.6rem 0}
+  .trust{list-style:none;padding:0;display:grid;gap:.3rem;font-size:.9rem;color:var(--rose);font-weight:500}
+  .logo{border-radius:50%;box-shadow:0 20px 50px #d9638a33;justify-self:center;width:100%;max-width:440px;height:auto;aspect-ratio:1;object-fit:cover}
+  .alt{background:var(--blush)}
+  /* Fotos pulidas: marco, proporción uniforme y zoom suave */
+  .photo{margin:0;background:#fff;padding:.55rem;border-radius:1.4rem;box-shadow:0 14px 36px #d9638a2e,0 2px 6px #0000000d;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+  .photo :global(img){width:100%;height:100%;object-fit:cover;border-radius:1rem;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .photo:hover{transform:translateY(-6px);box-shadow:0 22px 48px #d9638a47,0 2px 6px #0000000d}
+  .photo:hover :global(img){transform:scale(1.05)}
+  .photo{overflow:hidden}
+  .photo :global(img){display:block}
+  .showcase{display:grid;grid-template-columns:1.1fr 1fr;gap:1.2rem;align-items:stretch;margin-bottom:2rem}
+  .photo.big{aspect-ratio:1}
+  .photo.sq{aspect-ratio:1}
+  .photo.tall{aspect-ratio:4/5}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+  .stack{display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:1fr 1fr;gap:1rem}
+  .stack .tall{grid-row:span 2;aspect-ratio:3/4}
+  .stack .photo:not(.tall){aspect-ratio:auto;min-height:0}
+  .stack .photo:not(.tall){position:relative}
+  .stack .photo:not(.tall) :global(img){position:absolute;inset:.55rem;width:calc(100% - 1.1rem);height:calc(100% - 1.1rem)}
+  /* Transiciones */
+  :global(.js .reveal){opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+  :global(.js .reveal.in){opacity:1;transform:none}
+  .hero .grid2>div>*{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+  .hero .grid2>div>*:nth-child(2){animation-delay:.12s}.hero .grid2>div>*:nth-child(3){animation-delay:.24s}.hero .grid2>div>*:nth-child(4){animation-delay:.36s}.hero .grid2>div>*:nth-child(5){animation-delay:.48s}
+  .logo{animation:pop 1.2s cubic-bezier(.2,.7,.2,1) both .1s,float 7s ease-in-out infinite 1.4s}
+  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  @keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+  @keyframes float{50%{transform:translateY(-10px)}}
+  .card{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+  .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px #d9638a3d}
+  .top{transition:box-shadow .3s}.top.scrolled{box-shadow:0 6px 24px #d9638a22}
+  nav a:not(.btn){position:relative}
+  nav a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-3px;height:2px;width:100%;background:var(--pink-d);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  nav a:not(.btn):hover::after{transform:scaleX(1)}
+  .btn{position:relative;overflow:hidden}
+  .btn::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#ffffff66 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+  .btn:hover::after{transform:translateX(120%)}
+  .fab{animation:pulse 2.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 #25d36688,0 6px 18px #0004}70%{box-shadow:0 0 0 16px #25d36600,0 6px 18px #0004}100%{box-shadow:0 0 0 0 #25d36600,0 6px 18px #0004}}
+  details{transition:box-shadow .3s}details[open]{box-shadow:0 10px 26px #d9638a2e}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}:global(.js .reveal){opacity:1;transform:none}}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .card{background:#fff;border-radius:1.2rem;padding:1.6rem;box-shadow:0 8px 24px #d9638a1f;text-align:left}
+  .ico{font-size:2rem}
+  .card h3{margin:.5rem 0 .3rem}
+  .tag{display:inline-block;margin-top:.8rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);border:1px solid var(--rose);border-radius:99px;padding:.15rem .7rem}
+  .steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;text-align:left}
+  .steps b{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--pink-d);color:#fff;margin-bottom:.6rem}
+  .narrow{max-width:680px}
+  .form{display:grid;gap:.8rem;text-align:left}
+  .form input,.form select,.form textarea{padding:.9rem 1rem;border:1.5px solid var(--pink);border-radius:.8rem;font:inherit;background:#fff}
+  details{background:#fff;border-radius:.9rem;padding:1rem 1.2rem;margin-bottom:.7rem;box-shadow:0 4px 14px #d9638a14}
+  summary{cursor:pointer;font-weight:600}
+  details p{margin-top:.6rem}
+  .foot{background:linear-gradient(180deg,#1b1217,#120c10);color:#f6e9ee;padding:4rem 0 0;position:relative}
+  .foot::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--pink),var(--rose),var(--pink),transparent)}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.2fr;gap:2.5rem;padding-bottom:3rem}
+  .foot-brand img{border-radius:50%;box-shadow:0 0 0 3px #f3a6bd55;margin-bottom:.8rem}
+  .foot .big{color:var(--pink);font-size:2.4rem;line-height:1.1}
+  .foot .muted{opacity:.7;font-size:.9rem;margin-top:.4rem}
+  .foot-col{display:flex;flex-direction:column;gap:.55rem;font-size:.95rem}
+  .foot-col h3{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--pink);margin-bottom:.4rem}
+  .foot-col a{color:#f6e9ee;text-decoration:none;opacity:.85;transition:opacity .2s,color .2s,transform .2s;width:fit-content}
+  .foot-col a:hover{opacity:1;color:var(--pink);transform:translateX(3px)}
+  .ico-link{display:inline-flex;align-items:center;gap:.55rem}
+  .loc{display:flex;gap:.5rem;align-items:flex-start;margin-top:.6rem}
+  .loc svg{flex:none;margin-top:.15rem}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;border-top:1px solid #ffffff1f;padding-top:1.2rem;padding-bottom:1.4rem;font-size:.82rem;opacity:.8}
+  .credit{display:inline-flex;align-items:center;gap:.35rem}
+  .heart{color:var(--pink-d);animation:beat 1.8s ease-in-out infinite}
+  .credit a{color:var(--pink);font-weight:600;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+  .credit a:hover{border-color:var(--pink)}
+  @keyframes beat{0%,60%,100%{transform:scale(1)}20%{transform:scale(1.25)}40%{transform:scale(1.05)}}
+  .fab{position:fixed;right:1rem;bottom:1rem;width:3.4rem;height:3.4rem;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:1.5rem;text-decoration:none;box-shadow:0 6px 18px #0004;z-index:20}
+  @media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:2rem}.foot-bottom{flex-direction:column;align-items:flex-start}.showcase{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.logo{order:-1;max-width:260px}nav a:not(.btn){display:none}section{padding:3rem 0}}
+</style>
