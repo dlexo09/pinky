@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-# Uso: npm run deploy   (primera vez crea la infraestructura; despues solo sube el sitio)
+# Uso: AWS_PROFILE=webartisan npm run deploy   (primera vez crea la infraestructura; despues solo sube el sitio)
 # Opcional: DOMAIN=pinkyprints.com.mx CERT_ARN=arn:aws:acm:us-east-1:... npm run deploy
 set -euo pipefail
 cd "$(dirname "$0")/.."
+
+# Exige perfil explicito para no desplegar en la cuenta equivocada
+: "${AWS_PROFILE:?Define el perfil: AWS_PROFILE=webartisan npm run deploy}"
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+echo "==> Perfil: $AWS_PROFILE | Cuenta: $ACCOUNT"
 
 STACK=pinkyprints-site
 REGION=us-east-1   # CloudFront/ACM viven en us-east-1

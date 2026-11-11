@@ -14,9 +14,9 @@ Todos los datos del negocio (WhatsApp, redes, dominio, Pixel/GA4, endpoint de le
 
 ## Despliegue
 ```bash
-npm run deploy   # crea/actualiza infra (infra/site.yaml), sube dist/ a S3 e invalida CloudFront
+AWS_PROFILE=webartisan npm run deploy   # crea/actualiza infra (infra/site.yaml), sube dist/ a S3 e invalida CloudFront
 ```
-Requiere AWS CLI con credenciales. Para dominio propio: `DOMAIN=... CERT_ARN=... npm run deploy` (certificado ACM en us-east-1).
+Requiere AWS CLI y un perfil explícito (`AWS_PROFILE`); el script no despliega sin él. Para dominio propio: `DOMAIN=... CERT_ARN=... npm run deploy` (certificado ACM en us-east-1).
 
 ## Leads
 Registro en Google Sheets vía Apps Script: ver `docs/LEADS.md`.

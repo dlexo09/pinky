@@ -2,7 +2,7 @@
 export const SITE = {
   name: 'Pinky Prints',
   owner: 'Vania Zeret',
-  url: 'https://pinkyprints.example.com', // TODO: dominio real
+  url: 'https://pinkyprints.mx',
   whatsapp: '525547862732',
   whatsappDisplay: '+52 55 4786 2732',
   city: 'Gustavo A. Madero',
@@ -10,7 +10,7 @@ export const SITE = {
   instagram: 'https://www.instagram.com/pinkyprintsbyvaniazeret',
   facebook: 'https://www.facebook.com/profile.php?id=61596112456110',
   // Seguimiento (vacio = desactivado). Ver docs/LEADS.md
-  leadsEndpoint: 'https://script.google.com/macros/s/AKfycbyPic9HEayv-d75YMXVrXzEgUrqUzc4aSe_efnhb-5eVR_lxa01zEGz5uY6MFohL1u5Fw/exec', // URL de la Web App de Apps Script
+  leadsEndpoint: 'https://script.google.com/macros/s/AKfycbx26dwS2o9sz9kGGJx9fzvTodyAY7cXnYBEes7pFIjGr1iUUm77_V27PHgppHhpvJvbuQ/exec', // URL de la Web App de Apps Script
   metaPixelId: '', // ID numerico del Meta Pixel
   ga4Id: '', // ej. G-XXXXXXXXXX
   description:
